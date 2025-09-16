@@ -1,3 +1,5 @@
+#Var 6
+#function 1
 def sum_non_prime_divisors(n):
     sum = 0
     for i in range(2, n+1):
@@ -18,3 +20,15 @@ def is_prime(n):
     return True
 
 print(sum_non_prime_divisors(500))
+
+#function 2
+def count_digit_less_three(n):
+    count = 0
+    while n > 0:
+        digit = n % 10
+        if digit < 3:
+            count += digit
+        n = n // 10
+    return count
+
+print(count_digit_less_three(2423145))
