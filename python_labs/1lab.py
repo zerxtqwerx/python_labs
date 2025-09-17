@@ -3,8 +3,8 @@
 #Task 1
 #Var 6
 #function 1
+print("Var 6\n")
 print("Task 1 \n")
-print("Var 6")
 
 def sum_non_prime_divisors(n):
     sum = 0
@@ -137,3 +137,30 @@ dates = find_valid_dates("""Дана строка.31 февраля 2007? 23 я�
 print("Найденные даты:")
 for day, month, year in dates:
     print(f"{day} {month} {year}")
+
+
+print("\nTask 6-8")
+#6, 12, 12
+def find_numbers_more_5(str):
+    all_numbers = []
+    i = 0
+    while i < len(str):
+        if str[i].isdigit():
+            number = str[i]
+            for j in range(i + 1, len(str)):
+                if(str[j].isdigit()):
+                    number+=str[j]
+                else:
+                    break
+            i = j
+            try:
+                if int(number) > 5:
+                    all_numbers.append(number)
+            except ValueError:
+                print("Error number")
+        i += 1
+    return all_numbers
+
+print("\n Дана строка. Необходимо подсчитать количество чисел в этой строке, значение которых больше 5")
+print(find_numbers_more_5("lasjflksj234739sdksld31 1odjs39503"))
+
