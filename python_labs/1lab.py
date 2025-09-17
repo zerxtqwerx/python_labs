@@ -164,3 +164,16 @@ def find_numbers_more_5(str):
 print("\n Дана строка. Необходимо подсчитать количество чисел в этой строке, значение которых больше 5")
 print(find_numbers_more_5("lasjflksj234739sdksld31 1odjs39503"))
 
+print("\n Дана строка. Необходимо найти те символы кириллицы, которые не задействованы в данной строке. ")
+
+def find_cyrillic(text):
+    cyrillic = "абвгдеёжзийклмнопрстуфхц"
+    remove_chars = ""
+    for char in text:
+        if char.lower() in cyrillic:
+            remove_chars += char.lower()
+    result = set(cyrillic) - set(remove_chars)
+    return sorted(result)
+
+print(find_cyrillic("Дана строка. Необходимо найти те символы кириллицы, которые не задействованы в данной строке."))
+
