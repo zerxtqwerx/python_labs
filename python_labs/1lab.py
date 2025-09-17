@@ -177,3 +177,24 @@ def find_cyrillic(text):
 
 print(find_cyrillic("Дана строка. Необходимо найти те символы кириллицы, которые не задействованы в данной строке."))
 
+print("\nTask 9")
+print("\nПрочитать список строк с клавиатуры. Упорядочить по длине строки.")
+
+def input_lines():
+    lines = []
+    print("Введите строки:")
+    while True:
+        line = input()
+        if line == "":
+            break
+        lines.append(line)
+    return lines
+
+lines = input_lines()
+print(sorted(lines, key=len))
+
+print("\nTask 10")
+print("\nПрочитать список строк с клавиатуры. Упорядочить по количеству слов в строке.")
+
+
+
