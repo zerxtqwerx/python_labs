@@ -78,3 +78,16 @@ for word in words:
     new_words.append(shuffle_chars(word))
 
 print(new_words)
+
+#12
+def digit_chars(str):
+    new_str = ""
+    for char in str:
+        if char.isdigit():
+            new_str += char
+    for char in str:
+        if char.isalpha():
+            new_str+=char
+    return new_str
+
+print(digit_chars("Вариант 6. Задачи 6, 12, 12."))
