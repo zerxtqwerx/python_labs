@@ -1,5 +1,6 @@
-import math
+﻿import math
 
+#Task 1
 #Var 6
 #function 1
 def sum_non_prime_divisors(n):
@@ -54,3 +55,26 @@ def sum_prime_digit(n):
     return sum
 
 print(f3(9712))
+
+
+
+#Task 2-4
+#Var 6 (6, 12, 12)
+#6
+import random
+
+def shuffle_chars(word):
+    if len(word) <= 2:
+        return word
+    chars = list(word[1:-1])
+    random.shuffle(chars)
+    new_word = word[0] + ''.join(chars) + word[-1]
+    return new_word
+
+str = "Необходимо перемешать в каждом слове все символы в случайном порядке кроме первого и последнего"
+words = str.split(' ')
+new_words = []
+for word in words:
+    new_words.append(shuffle_chars(word))
+
+print(new_words)
