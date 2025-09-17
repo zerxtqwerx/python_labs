@@ -196,5 +196,6 @@ print(sorted(lines, key=len))
 print("\nTask 10")
 print("\nПрочитать список строк с клавиатуры. Упорядочить по количеству слов в строке.")
 
+lines.sort(key=lambda x: len(x.split()))
 
 
