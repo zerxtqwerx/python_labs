@@ -1,3 +1,5 @@
+import math
+
 #Var 6
 #function 1
 def sum_non_prime_divisors(n):
@@ -32,3 +34,23 @@ def count_digit_less_three(n):
     return count
 
 print(count_digit_less_three(2423145))
+
+#function 3
+def f3(n):
+    count = 0
+    sum_p_d = sum_non_prime_divisors(n)
+    for i in range(2, n//2):
+        if (n % i == 0) and (math.gcd(n, i) > 1) and (math.gcd(i, sum_p_d) == 1):
+            count += 1
+    return count
+
+def sum_prime_digit(n):
+    sum = 0
+    while n > 0:
+        digit = n % 10
+        if digit in [2, 3, 5, 7]:
+            sum += digit
+        n = n // 10
+    return sum
+
+print(f3(9712))
