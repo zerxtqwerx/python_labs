@@ -266,3 +266,34 @@ def task12(lines):
 
 print(task12(lines))
 
+print("\n Отсортировать строки в порядке увеличения квадратичного отклонения между средним \
+весом ASCII-кода символа в строке и максимально среднего ASCII-кода \
+тройки подряд идущих символов в строке.\n")
+def task13(lines):
+    
+    def calculate_metrics(text):
+        if len(text) == 0:
+            return 0, 0, 0
+
+        ascii_sum = sum(ord(char) for char in text)
+        mean_ascii = ascii_sum / len(text)
+        
+        max_triplet_mean = float('-inf')
+        
+        if len(text) >= 3:
+            for i in range(len(text) - 2):
+                triplet = text[i:i+3]
+                triplet_mean = sum(ord(char) for char in triplet) / 3
+                if triplet_mean > max_triplet_mean:
+                    max_triplet_mean = triplet_mean
+        else:
+            max_triplet_mean = mean_ascii
+        
+        squared_deviation = (mean_ascii - max_triplet_mean) ** 2
+        
+        return mean_ascii, max_triplet_mean, squared_deviation
+    
+    sorted_lines = sorted(lines, key=lambda x: calculate_metrics(x)[2])
+    return sorted_lines
+
+print(task13(lines))
