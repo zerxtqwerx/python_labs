@@ -376,6 +376,13 @@ elif n == 16:
     print(f"Элементы перед первым минимальным: {result}")
 
 elif n == 17:
+    arr = [1, 3, 7, 1, 5, 2, 9, 4]
+    index = 2
+    result = is_local_maximum(arr, index)
+
+    print(f"Массив: {arr}")
+    print(f"Проверяемый индекс: {index}, значение: {arr[index]}")
+    print(f"Является локальным максимумом: {result}")
 elif n == 18:
 elif n == 19:
 
@@ -397,3 +404,14 @@ def elements_before_first_min(arr):
 
     return arr[:first_min_index]
 
+def is_local_maximum(arr, index):
+    if not arr or index < 0 or index >= len(arr):
+        return False
+ 
+    if index == 0:
+        return len(arr) > 1 and arr[index] > arr[index + 1]
+ 
+    if index == len(arr) - 1:
+        return arr[index] > arr[index - 1]
+
+    return arr[index] > arr[index - 1] and arr[index] > arr[index + 1]
