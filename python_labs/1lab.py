@@ -297,3 +297,52 @@ def task13(lines):
     return sorted_lines
 
 print(task13(lines))
+
+print("\nВ порядке увеличение квадратичного отклонения частоты \
+встречаемости самого распространенного символа в наборе строк от частоты \
+его встречаемости в данной строке.\n")
+def task14(lines):
+    
+    if not lines:
+        return []
+    
+    def find_most_common_char(strings):
+        char_freq = {}
+        total_chars = 0
+        
+        for string in strings:
+            for char in string:
+                char_freq[char] = char_freq.get(char, 0) + 1
+                total_chars += 1
+        
+        if not char_freq:
+            return None, 0
+
+        most_common_char = max(char_freq.items(), key=lambda x: x[1])[0]
+        overall_frequency = char_freq[most_common_char] / total_chars
+        
+        return most_common_char, overall_frequency
+
+    most_common_char, overall_freq = find_most_common_char(lines)
+    
+    if most_common_char is None:
+        return lines
+    
+    print(f"Самый распространенный символ в наборе: '{most_common_char}'")
+    print(f"Его общая частота: {overall_freq:.4f}")
+    print()
+
+    def calculate_deviation(text):
+        if not text:
+            return overall_freq ** 2
+        
+        char_count = text.count(most_common_char)
+        string_freq = char_count / len(text)
+
+        deviation = (overall_freq - string_freq) ** 2
+        return deviation
+
+    sorted_lines = sorted(lines, key=calculate_deviation)
+    return sorted_lines, most_common_char, overall_freq
+
+print(task13(lines))
