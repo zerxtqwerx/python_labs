@@ -229,6 +229,40 @@ print("\nСортировка по разнице частот:")
 for line in result:
     print(f"  {line}")
 
-print("\n6. Отсортировать строки в порядке увеличения медианного значения выборки строк (прошлое \
+print("\nОтсортировать строки в порядке увеличения медианного значения выборки строк (прошлое \
 медианное значение удаляется из выборки и производится поиск нового \
 медианного значения). \n")
+
+def task12(lines):
+    def median_sort(strings):
+        if not strings:
+            return []
+        
+        working_list = strings.copy()
+        result = []
+        
+        while working_list:
+           
+            sorted_list = sorted(working_list)
+            n = len(sorted_list)
+            
+            if n % 2 == 1:
+                median_index = n // 2
+                median_value = sorted_list[median_index]
+            else:
+                median_index = n // 2 - 1
+                median_value = sorted_list[median_index]
+            
+            result.append(median_value)
+            
+            for i in range(len(working_list)):
+                if working_list[i] == median_value:
+                    del working_list[i]
+                    break
+        
+        return result
+    
+    return median_sort(lines)
+
+print(task12(lines))
+
