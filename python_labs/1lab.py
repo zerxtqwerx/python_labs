@@ -194,8 +194,41 @@ lines = input_lines()
 print(sorted(lines, key=len))
 
 print("\nTask 10")
-print("\nПрочитать список строк с клавиатуры. Упорядочить по количеству слов в строке.")
+print("\nПрочитать список строк с клавиатуры. Упорядочить по количеству слов в строке.\n")
 
 lines.sort(key=lambda x: len(x.split()))
+print(lines)
 
+print("\nTask 11 - 14") #3, 6, 8, 12
+print("\nОтсортировать строки в порядке увеличения разницы между частотой наиболее часто встречаемого символа в строке и частотой его появления в алфавите.")
 
+def task11(lines):
+    def calculate_difference(text):
+        if not text: 
+            return float('inf')
+        
+      
+        char_count = {}
+        for char in text:
+            char_count[char] = char_count.get(char, 0) + 1
+        
+        most_common_char, max_count = max(char_count.items(), key=lambda x: x[1])
+        
+        string_freq = max_count / len(text)
+        
+        alphabet_size = len(set(text))
+        alphabet_freq = 1 / alphabet_size if alphabet_size > 0 else 0
+        
+        return abs(string_freq - alphabet_freq)
+    
+    return sorted(lines, key=calculate_difference)
+
+result = task11(lines)
+
+print("\nСортировка по разнице частот:")
+for line in result:
+    print(f"  {line}")
+
+print("\n6. Отсортировать строки в порядке увеличения медианного значения выборки строк (прошлое \
+медианное значение удаляется из выборки и производится поиск нового \
+медианного значения). \n")
