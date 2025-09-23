@@ -367,7 +367,14 @@ if n == 15:
     result = cyclic_shift_left_3(arr)
     print(f"Исходный массив: {arr}")
     print(f"После сдвига влево на 3: {result}")
+
 elif n == 16:
+    arr = [5, 3, 8, 1, 9, 1, 4, 2]
+    result = elements_before_first_min(arr)
+    print(f"Исходный массив: {arr}")
+    print(f"Первый минимальный элемент: {min(arr)} (индекс {arr.index(min(arr))})")
+    print(f"Элементы перед первым минимальным: {result}")
+
 elif n == 17:
 elif n == 18:
 elif n == 19:
@@ -377,4 +384,16 @@ def cyclic_shift_left_3(arr):
         return arr
 
     return arr[3:] + arr[:3]
+
+def elements_before_first_min(arr):
+    if not arr:
+        return []
+    
+    min_value = min(arr)
+    first_min_index = arr.index(min_value)
+    
+    if first_min_index == 0:
+        return []
+
+    return arr[:first_min_index]
 
