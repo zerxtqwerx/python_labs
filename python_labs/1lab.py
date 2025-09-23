@@ -360,31 +360,6 @@ print("\n\n18. Дан целочисленный массив. Найти все
 среднего арифметического элементов массива. ")
 print("\n\n19. Для введенного списка построить список из элементов, \
 встречающихся в исходном более трех раз. ")
-n = input()
-
-if n == 15:
-    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    result = cyclic_shift_left_3(arr)
-    print(f"Исходный массив: {arr}")
-    print(f"После сдвига влево на 3: {result}")
-
-elif n == 16:
-    arr = [5, 3, 8, 1, 9, 1, 4, 2]
-    result = elements_before_first_min(arr)
-    print(f"Исходный массив: {arr}")
-    print(f"Первый минимальный элемент: {min(arr)} (индекс {arr.index(min(arr))})")
-    print(f"Элементы перед первым минимальным: {result}")
-
-elif n == 17:
-    arr = [1, 3, 7, 1, 5, 2, 9, 4]
-    index = 2
-    result = is_local_maximum(arr, index)
-
-    print(f"Массив: {arr}")
-    print(f"Проверяемый индекс: {index}, значение: {arr[index]}")
-    print(f"Является локальным максимумом: {result}")
-elif n == 18:
-elif n == 19:
 
 def cyclic_shift_left_3(arr):
     if len(arr) <= 3:
@@ -415,3 +390,69 @@ def is_local_maximum(arr, index):
         return arr[index] > arr[index - 1]
 
     return arr[index] > arr[index - 1] and arr[index] > arr[index + 1]
+
+def elements_less_than_average(arr):
+    if not arr:
+        return []
+
+    average = sum(arr) / len(arr)
+ 
+    result = [x for x in arr if x < average]
+    
+    return result, average
+
+from collections import Counter
+
+def elements_more_than_three_times(lst):
+    
+    if not lst:
+        return []
+    
+    counter = Counter(lst)
+    
+    result = [element for element, count in counter.items() if count > 3]
+    
+    return result, counter
+while True:
+    n = input()
+    if n == "":
+        break
+    n = (int)(n)
+    if n == 15:
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        result = cyclic_shift_left_3(arr)
+        print(f"Исходный массив: {arr}")
+        print(f"После сдвига влево на 3: {result}")
+
+    elif n == 16:
+        arr = [5, 3, 8, 1, 9, 1, 4, 2]
+        result = elements_before_first_min(arr)
+        print(f"Исходный массив: {arr}")
+        print(f"Первый минимальный элемент: {min(arr)} (индекс {arr.index(min(arr))})")
+        print(f"Элементы перед первым минимальным: {result}")
+
+    elif n == 17:
+        arr = [1, 3, 7, 1, 5, 2, 9, 4]
+        index = 2
+        result = is_local_maximum(arr, index)
+
+        print(f"Массив: {arr}")
+        print(f"Проверяемый индекс: {index}, значение: {arr[index]}")
+        print(f"Является локальным максимумом: {result}")
+    elif n == 18:
+        arr = [5, 3, 8, 1, 9, 2, 4, 7]
+        result, avg = elements_less_than_average(arr)
+
+        print(f"Исходный массив: {arr}")
+        print(f"Среднее арифметическое: {avg:.2f}")
+        print(f"Элементы меньше среднего: {result}")
+    elif n == 19:
+        lst = [1, 2, 3, 2, 4, 2, 5, 2, 3, 3, 3, 1, 1, 1, 1]
+        result, counter = elements_more_than_three_times(lst)
+
+        print(f"Исходный список: {lst}")
+        print("Частоты элементов:")
+        for element, count in sorted(counter.items()):
+            print(f"  {element}: {count} раз")
+        print(f"Элементы, встречающиеся более 3 раз: {result}")
+
