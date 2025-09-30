@@ -1,28 +1,54 @@
 ﻿def count_unique_words():
-    # Читаем количество строк
     n = int(input().strip())
     
     words_set = set()
-    
-    # Читаем n строк
+
     for _ in range(n):
         line = input().strip()
-        
-        # Разбиваем строку на слова, игнорируя пробелы и символы конца строки
         words = line.split()
-        
-        # Обрабатываем каждое слово
         for word in words:
-            # Убираем знаки препинания в начале и конце слова
             clean_word = word.strip('.,;!?\'"()-:').lower()
-            
-            # Если слово не пустое после очистки, добавляем в множество
             if clean_word:
                 words_set.add(clean_word)
     
     return len(words_set)
 
-# Запускаем программу
+
+def frequency_analysis():
+    n = int(input().strip())
+
+    word_count = {}
+
+    for _ in range(n):
+        line = input().strip()
+
+        words = line.split()
+
+        for word in words:
+            word_lower = word.lower()
+            word_count[word_lower] = word_count.get(word_lower, 0) + 1
+
+    return word_count
+
+
+def sort_words_by_frequency(word_count):
+    frequency_list = []
+    for word, count in word_count.items():
+        frequency_list.append((count, word))
+
+    sorted_list = sorted(frequency_list, key=lambda x: (-x[0], x[1]))
+
+    return [word for count, word in sorted_list]
+
 if __name__ == "__main__":
+    print("Task 1")
     result = count_unique_words()
     print(result)
+
+    print("Task 2")
+    word_count = frequency_analysis()
+    sorted_words = sort_words_by_frequency(word_count)
+
+    for word in sorted_words:
+        print(word)
+
